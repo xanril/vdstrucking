@@ -3,7 +3,7 @@ namespace VDSTrucking.Models
 {
     public class Truck
     {
-        public int TruckID;
-        public string Name;
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }
