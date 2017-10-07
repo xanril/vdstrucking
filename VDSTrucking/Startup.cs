@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using VDSTrucking.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace VDSTrucking
 {
@@ -29,6 +31,7 @@ namespace VDSTrucking
         {
             // Add framework services.
             services.AddMvc();
+            services.AddDbContext<VDSDBContext>(options => options.UseMySQL(Configuration.GetConnectionString("LocalConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
