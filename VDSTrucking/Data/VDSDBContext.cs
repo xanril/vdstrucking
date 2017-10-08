@@ -25,6 +25,10 @@ namespace VDSTrucking.Data
             modelBuilder.Entity<Driver>().ToTable("Drivers");
             modelBuilder.Entity<Helper>().ToTable("Helpers");
             modelBuilder.Entity<Location>().ToTable("Locations");
+            modelBuilder.Entity<Route>().ToTable("Routes");
+            modelBuilder.Entity<ParticularItem>().ToTable("ParticularItems");
+            modelBuilder.Entity<Particular>().ToTable("Particulars");
+            modelBuilder.Entity<Trip>().ToTable("Trips");
         }
     }
 }
