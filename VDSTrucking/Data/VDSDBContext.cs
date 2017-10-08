@@ -14,6 +14,10 @@ namespace VDSTrucking.Data
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Helper> Helpers { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<Route> Routes { get; set; }
+        public DbSet<ParticularItem> ParticularItems { get; set; }
+        public DbSet<Particular> Particulars { get; set; }
+        public DbSet<Trip> Trips { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
