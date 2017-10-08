@@ -13,12 +13,14 @@ namespace VDSTrucking.Data
         public DbSet<Truck> Trucks { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Helper> Helpers { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Truck>().ToTable("Trucks");
             modelBuilder.Entity<Driver>().ToTable("Drivers");
             modelBuilder.Entity<Helper>().ToTable("Helpers");
+            modelBuilder.Entity<Location>().ToTable("Locations");
         }
     }
 }
