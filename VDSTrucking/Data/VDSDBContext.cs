@@ -11,10 +11,12 @@ namespace VDSTrucking.Data
         }
 
         public DbSet<Truck> Trucks { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Truck>().ToTable("Trucks");
+            modelBuilder.Entity<Driver>().ToTable("Drivers");
         }
     }
 }
