@@ -8,6 +8,7 @@ namespace VDSTrucking.Data
     {
         public static void Initialize(VDSDBContext context)
         {
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             // Look for any students.
