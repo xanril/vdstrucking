@@ -27,7 +27,9 @@ namespace VDSTrucking.Models
         public int DriverID { get; set; }
         public virtual Driver Driver { get; set; }
 
-        public virtual ICollection<TripHelper> TripHelpers { get; set; }
+        public int HelperListID { get; set; }
+        public virtual HelperList HelperList { get; set; }
+
         public virtual ICollection<Particular> Particulars { get; set; }
     }
 }
