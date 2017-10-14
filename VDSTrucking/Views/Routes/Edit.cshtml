@@ -1,0 +1,57 @@
+@model VDSTrucking.Models.Route
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Route</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="RouteID" />
+        <div class="form-group">
+            <label asp-for="Rate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Rate" class="form-control" />
+                <span asp-validation-for="Rate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DriverRate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="DriverRate" class="form-control" />
+                <span asp-validation-for="DriverRate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="HelperRate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="HelperRate" class="form-control" />
+                <span asp-validation-for="HelperRate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LocationID" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="LocationID" class="form-control" asp-items="ViewBag.LocationID"></select>
+                <span asp-validation-for="LocationID" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
