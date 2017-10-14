@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace VDSTrucking.Models
 {
-    public class TripHelper
+    public class HelperList
     {
-        public int TripHelperID { get; set; }
+        public int HelperListID { get; set; }
 
         [Required]
         public int TripID { get; set; }
         public virtual Trip Trip { get; set; }
 
         [Required]
-        public int HelperID { get; set; }
-        public virtual Helper Helper { get; set; }
+        public virtual ICollection<Helper> Helpers { get; set; }
     }
 }
