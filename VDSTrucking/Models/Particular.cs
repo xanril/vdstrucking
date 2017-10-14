@@ -20,6 +20,6 @@ namespace VDSTrucking.Models
         
         [Required]
         public int ParticularItemID { get; set; }
-        public ParticularItem ParticularItem { get; set; }
+        public virtual ParticularItem ParticularItem { get; set; }
     }
 }
