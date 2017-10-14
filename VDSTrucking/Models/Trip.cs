@@ -16,6 +16,10 @@ namespace VDSTrucking.Models
         public DateTime Date { get; set; }
 
         [Required]
+        public int RouteID { get; set; }
+        public virtual Route Route { get; set; }
+
+        [Required]
         public int TruckID { get; set; }
         public Truck Truck { get; set; }
 
