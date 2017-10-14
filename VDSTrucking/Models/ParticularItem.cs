@@ -10,7 +10,8 @@ namespace VDSTrucking.Models
     {
         public int ParticularItemID { get; set; }
 
-        [MaxLength(50), MinLength(2), Required]
+        [Required]
+        [StringLength(50, MinimumLength =2)]
         public string Name { get; set; }
     }
 }

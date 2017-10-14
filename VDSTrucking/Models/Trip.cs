@@ -16,14 +16,20 @@ namespace VDSTrucking.Models
         public DateTime Date { get; set; }
 
         [Required]
+        public int RouteID { get; set; }
+        public virtual Route Route { get; set; }
+
+        [Required]
         public int TruckID { get; set; }
-        public Truck Truck { get; set; }
+        public virtual Truck Truck { get; set; }
 
         [Required]
         public int DriverID { get; set; }
-        public Driver Driver { get; set; }
+        public virtual Driver Driver { get; set; }
 
-        public ICollection<Helper> Helpers { get; set; }
-        public ICollection<Particular> Particulars { get; set; }
+        public int HelperListID { get; set; }
+        public virtual HelperList HelperList { get; set; }
+
+        public virtual ICollection<Particular> Particulars { get; set; }
     }
 }

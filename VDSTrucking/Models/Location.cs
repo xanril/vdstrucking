@@ -11,7 +11,7 @@ namespace VDSTrucking.Models
         public int LocationID { get; set; }
 
         [Required]
-        [MaxLength(75), MinLength(2)]
+        [StringLength(100, MinimumLength = 2)]
         public string Name { get; set; }
     }
 }

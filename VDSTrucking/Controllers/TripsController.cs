@@ -22,7 +22,7 @@ namespace VDSTrucking.Controllers
         // GET: Trips
         public async Task<IActionResult> Index()
         {
-            var vDSDBContext = _context.Trips.Include(t => t.Driver).Include(t => t.Truck);
+            var vDSDBContext = _context.Trips.Include(t => t.Driver).Include(t => t.Route).Include(t => t.Truck);
             return View(await vDSDBContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace VDSTrucking.Controllers
 
             var trip = await _context.Trips
                 .Include(t => t.Driver)
+                .Include(t => t.Route)
                 .Include(t => t.Truck)
                 .SingleOrDefaultAsync(m => m.TripID == id);
             if (trip == null)
@@ -50,7 +51,8 @@ namespace VDSTrucking.Controllers
         public IActionResult Create()
         {
             ViewData["DriverID"] = new SelectList(_context.Drivers, "DriverID", "FirstName");
-            ViewData["TruckID"] = new SelectList(_context.Trucks, "TruckID", "TruckID");
+            ViewData["RouteID"] = new SelectList(_context.Routes, "RouteID", "RouteID");
+            ViewData["TruckID"] = new SelectList(_context.Trucks, "TruckID", "Name");
             return View();
         }
 
@@ -59,7 +61,7 @@ namespace VDSTrucking.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripID,Date,TruckID,DriverID")] Trip trip)
+        public async Task<IActionResult> Create([Bind("TripID,Date,RouteID,TruckID,DriverID,HelperListID")] Trip trip)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +70,8 @@ namespace VDSTrucking.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["DriverID"] = new SelectList(_context.Drivers, "DriverID", "FirstName", trip.DriverID);
-            ViewData["TruckID"] = new SelectList(_context.Trucks, "TruckID", "TruckID", trip.TruckID);
+            ViewData["RouteID"] = new SelectList(_context.Routes, "RouteID", "RouteID", trip.RouteID);
+            ViewData["TruckID"] = new SelectList(_context.Trucks, "TruckID", "Name", trip.TruckID);
             return View(trip);
         }
 
@@ -86,7 +89,8 @@ namespace VDSTrucking.Controllers
                 return NotFound();
             }
             ViewData["DriverID"] = new SelectList(_context.Drivers, "DriverID", "FirstName", trip.DriverID);
-            ViewData["TruckID"] = new SelectList(_context.Trucks, "TruckID", "TruckID", trip.TruckID);
+            ViewData["RouteID"] = new SelectList(_context.Routes, "RouteID", "RouteID", trip.RouteID);
+            ViewData["TruckID"] = new SelectList(_context.Trucks, "TruckID", "Name", trip.TruckID);
             return View(trip);
         }
 
@@ -95,7 +99,7 @@ namespace VDSTrucking.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TripID,Date,TruckID,DriverID")] Trip trip)
+        public async Task<IActionResult> Edit(int id, [Bind("TripID,Date,RouteID,TruckID,DriverID,HelperListID")] Trip trip)
         {
             if (id != trip.TripID)
             {
@@ -123,7 +127,8 @@ namespace VDSTrucking.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["DriverID"] = new SelectList(_context.Drivers, "DriverID", "FirstName", trip.DriverID);
-            ViewData["TruckID"] = new SelectList(_context.Trucks, "TruckID", "TruckID", trip.TruckID);
+            ViewData["RouteID"] = new SelectList(_context.Routes, "RouteID", "RouteID", trip.RouteID);
+            ViewData["TruckID"] = new SelectList(_context.Trucks, "TruckID", "Name", trip.TruckID);
             return View(trip);
         }
 
@@ -137,6 +142,7 @@ namespace VDSTrucking.Controllers
 
             var trip = await _context.Trips
                 .Include(t => t.Driver)
+                .Include(t => t.Route)
                 .Include(t => t.Truck)
                 .SingleOrDefaultAsync(m => m.TripID == id);
             if (trip == null)
