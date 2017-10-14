@@ -10,23 +10,23 @@ using VDSTrucking.Models;
 
 namespace VDSTrucking.Controllers
 {
-    public class ParticularsController : Controller
+    public class HelperListsController : Controller
     {
         private readonly VDSDBContext _context;
 
-        public ParticularsController(VDSDBContext context)
+        public HelperListsController(VDSDBContext context)
         {
             _context = context;    
         }
 
-        // GET: Particulars
+        // GET: HelperLists
         public async Task<IActionResult> Index()
         {
-            var vDSDBContext = _context.Particulars.Include(p => p.ParticularItem).Include(p => p.Trip);
+            var vDSDBContext = _context.HelperList.Include(h => h.Trip);
             return View(await vDSDBContext.ToListAsync());
         }
 
-        // GET: Particulars/Details/5
+        // GET: HelperLists/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,45 +34,42 @@ namespace VDSTrucking.Controllers
                 return NotFound();
             }
 
-            var particular = await _context.Particulars
-                .Include(p => p.ParticularItem)
-                .Include(p => p.Trip)
-                .SingleOrDefaultAsync(m => m.ParticularID == id);
-            if (particular == null)
+            var helperList = await _context.HelperList
+                .Include(h => h.Trip)
+                .SingleOrDefaultAsync(m => m.HelperListID == id);
+            if (helperList == null)
             {
                 return NotFound();
             }
 
-            return View(particular);
+            return View(helperList);
         }
 
-        // GET: Particulars/Create
+        // GET: HelperLists/Create
         public IActionResult Create()
         {
-            ViewData["ParticularItemID"] = new SelectList(_context.ParticularItems, "ParticularItemID", "Name");
             ViewData["TripID"] = new SelectList(_context.Trips, "TripID", "TripID");
             return View();
         }
 
-        // POST: Particulars/Create
+        // POST: HelperLists/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ParticularID,TripID,Cost,ParticularItemID")] Particular particular)
+        public async Task<IActionResult> Create([Bind("HelperListID,TripID")] HelperList helperList)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(particular);
+                _context.Add(helperList);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["ParticularItemID"] = new SelectList(_context.ParticularItems, "ParticularItemID", "Name", particular.ParticularItemID);
-            ViewData["TripID"] = new SelectList(_context.Trips, "TripID", "TripID", particular.TripID);
-            return View(particular);
+            ViewData["TripID"] = new SelectList(_context.Trips, "TripID", "TripID", helperList.TripID);
+            return View(helperList);
         }
 
-        // GET: Particulars/Edit/5
+        // GET: HelperLists/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,24 +77,23 @@ namespace VDSTrucking.Controllers
                 return NotFound();
             }
 
-            var particular = await _context.Particulars.SingleOrDefaultAsync(m => m.ParticularID == id);
-            if (particular == null)
+            var helperList = await _context.HelperList.SingleOrDefaultAsync(m => m.HelperListID == id);
+            if (helperList == null)
             {
                 return NotFound();
             }
-            ViewData["ParticularItemID"] = new SelectList(_context.ParticularItems, "ParticularItemID", "Name", particular.ParticularItemID);
-            ViewData["TripID"] = new SelectList(_context.Trips, "TripID", "TripID", particular.TripID);
-            return View(particular);
+            ViewData["TripID"] = new SelectList(_context.Trips, "TripID", "TripID", helperList.TripID);
+            return View(helperList);
         }
 
-        // POST: Particulars/Edit/5
+        // POST: HelperLists/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ParticularID,TripID,Cost,ParticularItemID")] Particular particular)
+        public async Task<IActionResult> Edit(int id, [Bind("HelperListID,TripID")] HelperList helperList)
         {
-            if (id != particular.ParticularID)
+            if (id != helperList.HelperListID)
             {
                 return NotFound();
             }
@@ -106,12 +102,12 @@ namespace VDSTrucking.Controllers
             {
                 try
                 {
-                    _context.Update(particular);
+                    _context.Update(helperList);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ParticularExists(particular.ParticularID))
+                    if (!HelperListExists(helperList.HelperListID))
                     {
                         return NotFound();
                     }
@@ -122,12 +118,11 @@ namespace VDSTrucking.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["ParticularItemID"] = new SelectList(_context.ParticularItems, "ParticularItemID", "Name", particular.ParticularItemID);
-            ViewData["TripID"] = new SelectList(_context.Trips, "TripID", "TripID", particular.TripID);
-            return View(particular);
+            ViewData["TripID"] = new SelectList(_context.Trips, "TripID", "TripID", helperList.TripID);
+            return View(helperList);
         }
 
-        // GET: Particulars/Delete/5
+        // GET: HelperLists/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,32 +130,31 @@ namespace VDSTrucking.Controllers
                 return NotFound();
             }
 
-            var particular = await _context.Particulars
-                .Include(p => p.ParticularItem)
-                .Include(p => p.Trip)
-                .SingleOrDefaultAsync(m => m.ParticularID == id);
-            if (particular == null)
+            var helperList = await _context.HelperList
+                .Include(h => h.Trip)
+                .SingleOrDefaultAsync(m => m.HelperListID == id);
+            if (helperList == null)
             {
                 return NotFound();
             }
 
-            return View(particular);
+            return View(helperList);
         }
 
-        // POST: Particulars/Delete/5
+        // POST: HelperLists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var particular = await _context.Particulars.SingleOrDefaultAsync(m => m.ParticularID == id);
-            _context.Particulars.Remove(particular);
+            var helperList = await _context.HelperList.SingleOrDefaultAsync(m => m.HelperListID == id);
+            _context.HelperList.Remove(helperList);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool ParticularExists(int id)
+        private bool HelperListExists(int id)
         {
-            return _context.Particulars.Any(e => e.ParticularID == id);
+            return _context.HelperList.Any(e => e.HelperListID == id);
         }
     }
 }

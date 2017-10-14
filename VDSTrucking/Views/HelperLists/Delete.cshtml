@@ -1,4 +1,4 @@
-@model VDSTrucking.Models.Particular
+@model VDSTrucking.Models.HelperList
 
 @{
     ViewData["Title"] = "Delete";
@@ -8,22 +8,10 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Particular</h4>
+    <h4>HelperList</h4>
     <hr />
     <dl class="dl-horizontal">
-        <input type="hidden" asp-for="ParticularID" />
-        <dt>
-            @Html.DisplayNameFor(model => model.Cost)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Cost)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ParticularItem)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ParticularItem.Name)
-        </dd>
+        <input type="hidden" asp-for="HelperListID" />
         <dt>
             @Html.DisplayNameFor(model => model.Trip)
         </dt>

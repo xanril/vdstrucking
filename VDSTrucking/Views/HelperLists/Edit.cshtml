@@ -1,4 +1,4 @@
-@model VDSTrucking.Models.Particular
+@model VDSTrucking.Models.HelperList
 
 @{
     ViewData["Title"] = "Edit";
@@ -8,29 +8,15 @@
 
 <form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>Particular</h4>
+        <h4>HelperList</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ParticularID" />
+    <input type="hidden" asp-for="HelperListID" />
         <div class="form-group">
             <label asp-for="TripID" class="control-label col-md-2"></label>
             <div class="col-md-10">
                 <select asp-for="TripID" class="form-control" asp-items="ViewBag.TripID"></select>
                 <span asp-validation-for="TripID" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Cost" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Cost" class="form-control" />
-                <span asp-validation-for="Cost" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ParticularItemID" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="ParticularItemID" class="form-control" asp-items="ViewBag.ParticularItemID"></select>
-                <span asp-validation-for="ParticularItemID" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">

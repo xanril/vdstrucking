@@ -17,16 +17,28 @@
             @Html.DisplayFor(model => model.Date)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.HelperListID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HelperListID)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Driver)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Driver.FirstName)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Route)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Route.RouteID)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Truck)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Truck.TruckID)
+            @Html.DisplayFor(model => model.Truck.Name)
         </dd>
     </dl>
 </div>

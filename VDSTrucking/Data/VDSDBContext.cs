@@ -18,6 +18,7 @@ namespace VDSTrucking.Data
         public DbSet<ParticularItem> ParticularItems { get; set; }
         public DbSet<Particular> Particulars { get; set; }
         public DbSet<Trip> Trips { get; set; }
+        public DbSet<HelperList> HelperList { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
