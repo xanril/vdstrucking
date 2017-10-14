@@ -11,9 +11,13 @@ namespace VDSTrucking.Models
         public int ParticularID { get; set; }
 
         [Required]
+        public int TripID { get; set; }
+        public virtual Trip Trip { get; set; }
+
+        [Required]
         [DataType(DataType.Currency)]
         public decimal Cost { get; set; }
-
+        
         [Required]
         public int ParticularItemID { get; set; }
         public ParticularItem ParticularItem { get; set; }
