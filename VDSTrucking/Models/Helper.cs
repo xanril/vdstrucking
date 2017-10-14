@@ -11,17 +11,17 @@ namespace VDSTrucking.Models
         public int HelperID { get; set; }
 
         [Required]
-        [MaxLength(50), MinLength(2)]
+        [StringLength(50, MinimumLength = 2)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(50), MinLength(2)]
+        [StringLength(50, MinimumLength = 2)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required]
-        [MaxLength(50), MinLength(2)]
+        [StringLength(50, MinimumLength = 2)]
         [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
     }
