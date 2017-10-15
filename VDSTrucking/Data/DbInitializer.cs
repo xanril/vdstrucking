@@ -195,6 +195,12 @@ namespace VDSTrucking.Data
                 new ParticularItem{ Name="Checker"},
                 new ParticularItem{ Name="Others"}
             };
+
+            foreach (ParticularItem item in particularItems)
+            {
+                context.ParticularItems.Add(item);
+            }
+            context.SaveChanges();
         }
     }
 }
